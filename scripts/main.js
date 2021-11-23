@@ -56,8 +56,6 @@ message.addEventListener("slice.at", function( fruit, angle ){
         fruit.broken( angle );
         if( fruit.isHomeMenu )
             switch( 1 ){
-                case fruit.isDojoIcon:
-                    sence.switchSence( "dojo-body" ); break;
                 case fruit.isNewGameIcon:
                     sence.switchSence( "game-body" ); break;
                 case fruit.isQuitIcon:

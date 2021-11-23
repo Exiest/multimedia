@@ -2,10 +2,6 @@ var timeline = require( "../timeline" );
 var layer = require( "../layer" ).getLayer( "knife" );
 var Ucren = require( "../lib/ucren" );
 
-/**
- * 刀光模块
- */
-
 var lastX = null, lastY = null;
 var abs = Math.abs;
 

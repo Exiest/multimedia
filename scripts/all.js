@@ -488,7 +488,6 @@ define("scripts/sence.js", function(exports){
 	        senceState.set( "entering" );
 	        switch( name ){
 	            case "home-menu": this.showMenu( onShow ); break;
-	            case "dojo-body": this.showDojo( onShow ); break;
 	            case "game-body": this.showNewGame( onShow ); break;
 	            case "quit-body": this.showQuit( onShow ); break;
 	        }
@@ -497,7 +496,7 @@ define("scripts/sence.js", function(exports){
 	    var onShow = function(){
 	        senceState.set( "ready" );
 	
-	        if( name == "dojo-body" || name == "quit-body" ){
+	        if( name == "quit-body" ){
 	            exports.switchSence( "home-menu" );
 	        }
 	    };
@@ -506,7 +505,6 @@ define("scripts/sence.js", function(exports){
 	
 	    if( curSence.isunset() ) onHide();
 	    else if( curSence.is( "home-menu" ) ) this.hideMenu( onHide );
-	    else if( curSence.is( "dojo-body" ) ) this.hideDojo( onHide );
 	    else if( curSence.is( "game-body" ) ) this.hideNewGame( onHide );
 	    else if( curSence.is( "quit-body" ) ) this.hideQuit( onHide );
 	};
@@ -515,12 +513,11 @@ define("scripts/sence.js", function(exports){
 	    var callee = arguments.callee;
 	    var times = callee.times = ++ callee.times || 1;
 	
-	    peach = fruit.create( "peach", 137, 333, true );
 	    sandia = fruit.create( "sandia", 330, 322, true );
 	    boom = fruit.create( "boom", 552, 367, true, 2500 );
 	
-	    [ peach, sandia, boom ].forEach(function( f ){ f.isHomeMenu = 1; });
-	    peach.isDojoIcon = sandia.isNewGameIcon = boom.isQuitIcon = 1;
+	    [ sandia, boom ].forEach(function( f ){ f.isHomeMenu = 1; });
+	    sandia.isNewGameIcon = boom.isQuitIcon = 1;
 	
 	    var group = [
 	    	[ homeMask, 0 ], 
@@ -529,28 +526,26 @@ define("scripts/sence.js", function(exports){
 	    	[ ninja, 500 ], 
 	    	[ homeDesc, 1500 ], 
 	
-	    	[ dojo, 2000 ], 
 	    	[ newGame, 2000 ], 
 	    	[ quit, 2000 ],
 	        
 	        [ newSign, 2000 ],
 	
-	        [ peach, 2000 ],
 	        [ sandia, 2000 ],
 	        [ boom, 2000 ]
 	    ];
 	
 	    group.invoke( "show" );
-	    [ peach, sandia ].invoke( "rotate", 2500 );
+	    [ sandia ].invoke( "rotate", 2500 );
 	
 	    menuSnd.play();
 	    setTimeout( callback, 2500 );
 	};
 	
 	exports.hideMenu = function( callback ){
-	    [ newSign, dojo, newGame, quit ].invoke( "hide" );
+	    [ newGame, quit ].invoke( "hide" );
 	    [ homeMask, logo, ninja, homeDesc ].invoke( "hide" );
-	    [ peach, sandia, boom ].invoke( "fallOff", 150 );
+	    [ sandia, boom ].invoke( "fallOff", 150 );
 	
 	    menuSnd.stop();
 	    setTimeout( callback, fruit.getDropTimeSetting() );
@@ -573,22 +568,12 @@ define("scripts/sence.js", function(exports){
 	    setTimeout( callback, 1000 );
 	};
 	
-	exports.showDojo = function( callback ){
-	    developing.show( 250 );
-	    setTimeout( callback, 1500 );
-	};
-	
-	exports.hideDojo = function( callback ){
-	    setTimeout( callback, 1000 );
-	};
-	
 	exports.showQuit = function( callback ){
 	    developing.show( 250 );
 	    setTimeout( callback, 1500 );
 	};
 
 	exports.hideQuit = function( callback ){
-	    // TODO: 
 	    setTimeout( callback, 1000 );
 	};
 	

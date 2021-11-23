@@ -249,8 +249,6 @@ ClassFruit.prototype.remove = function(){
 	message.postMessage( this, "fruit.remove" );
 };
 
-// 显示/隐藏 相关
-
 ClassFruit.prototype.onShowStart = function(){
 	this.image.show();
 	// this.shadow.show();
@@ -265,8 +263,6 @@ ClassFruit.prototype.onHideEnd = function(){
 	this.remove();
 };
 
-// 旋转相关
-
 ClassFruit.prototype.onRotateStart = function(){
 	
 };
@@ -274,8 +270,6 @@ ClassFruit.prototype.onRotateStart = function(){
 ClassFruit.prototype.onRotating = function( time ){
 	this.image.rotate( ( this.rotateSpeed * time / 1e3 ) % 360, true );
 };
-
-// 裂开相关
 
 ClassFruit.prototype.onBrokenDropUpdate = function( time ){
 	var radius = this.radius;
@@ -308,8 +302,6 @@ ClassFruit.prototype.onBrokenDropEnd = function(){
 	this.remove();
 };
 
-// 抛出相关
-
 ClassFruit.prototype.onShotOuting = function( time ){
 	this.pos(
 		linearAnim( time, this.shotOutStartX, this.shotOutEndX - this.shotOutStartX, dropTime ),
@@ -324,8 +316,6 @@ ClassFruit.prototype.onShotOutStart = function(){
 ClassFruit.prototype.onShotOutEnd = function(){
 	this.fallOff( 0, this.fallOffToX );
 };
-
-// 掉落相关
 
 ClassFruit.prototype.onFalling = function( time ){
 	var y;
@@ -356,7 +346,7 @@ ClassFruit.prototype.checkForFallOutOfViewer = function( y ){
 };
 
 exports.create = function( type, originX, originY, isHide, flameStart ){
-	if( typeof type == "number" ) // 缺省 type
+	if( typeof type == "number" )
 		isHide = originY,
 		originY = originX,
 	    originX = type,

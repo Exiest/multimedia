@@ -6,10 +6,6 @@ var state = require( "../state" );
 
 var exponential = tween.exponential.co;
 
-/**
- * "game-over"模块
- */
-
 exports.anims = [];
 
 exports.set = function(){

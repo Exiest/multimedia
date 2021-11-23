@@ -2,10 +2,6 @@ var layer = require( "../layer" );
 var timeline = require( "../timeline" );
 var Ucren = require( "../lib/ucren" );
 
-/**
- * 旋转类模块模型
- */
-
 exports.create = function( imageSrc, x, y, w, h, z, anim, animDur ){
 	var module = {}, image;
 	var rotateDire = [12, -12][Ucren.randomNumber(2)];

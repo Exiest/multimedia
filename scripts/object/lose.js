@@ -7,10 +7,6 @@ var message = require( "../message" );
 var anim = tween.exponential.co;
 var back = tween.back.co;
 
-/**
- * 
- */
-
 var o1, o2, o3, animLength = 500;
 
 var conf1 = { src: "images/x.png", sx: 650, ex: 561, y: 5, w: 22, h: 19 };
@@ -85,8 +81,6 @@ exports.scaleImage = function( image ){
         recycle: this.anims
     });
 };
-
-// 显示/隐藏 相关
 
 exports.onTimeUpdate = function( time, mode, x1s, x1e, x2s, x2e, x3s, x3e ){
     o1.attr( "x", anim( time, x1s, x1e - x1s, animLength ) );
